@@ -12,10 +12,12 @@ namespace pet_hotel
         // name
         [Required]
         public string name { get; set; }
-        
+
         // email validated format name@email.com
         [Required]
-        public string emailAddress { get; set; } 
+        public string emailAddress { get; set; }
+
+        public List<Pet> pets { get; set; }
 
         // pet count 
         [NotMapped]

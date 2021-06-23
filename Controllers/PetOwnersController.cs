@@ -18,11 +18,13 @@ namespace pet_hotel.Controllers
         }
 
         //GET api/petowners all pet owners
+        // GET /api/petOwners/
 
-            [HttpGet] // GET /api/petOwners/
-        public IEnumerable<PetOwner> GetPetOwners() {
+        [HttpGet]
+        public IEnumerable<PetOwner> GetPetOwners()
+        {
             return _context.PetOwners;
-               
+
         }
 
         // //GET owners by ID
@@ -38,12 +40,12 @@ namespace pet_hotel.Controllers
         //     return Ok(owner);
         // }
 
-    // [HttpPost]
-    // public IActionResult CreatePetOwner([FromBody] PetOwner owner) {
-    //     _context.Add(owner);
-    //     _context.SaveChanges();
-    //     return CreatedAtAction(nameof(GetById), owner, owner);
-    // }
+        // [HttpPost]
+        // public IActionResult CreatePetOwner([FromBody] PetOwner owner) {
+        //     _context.Add(owner);
+        //     _context.SaveChanges();
+        //     return CreatedAtAction(nameof(GetById), owner, owner);
+        // }
 
         // This is just a stub for GET / to prevent any weird frontend errors that 
         // occur when the route is missing in this controller
