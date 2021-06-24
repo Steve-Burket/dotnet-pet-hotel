@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Table, Button, InputGroup, Form } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 
 class PetOwnersTable extends Component {
     state = {

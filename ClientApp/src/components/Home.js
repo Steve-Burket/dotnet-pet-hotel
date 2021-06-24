@@ -24,10 +24,11 @@ class Home extends Component {
             <p>
               At our Pet Hotel, we take care of your pet while you are away.{' '}
             </p>
-            <p>🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾</p>
-           
-
-
+            <p>
+              <span role='img' aria-label='paw prints'>
+                🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾
+              </span>
+            </p>
           </Container>
         </Jumbotron>
         <PetsTable fetchPetOwners={this.fetchPetOwners} />

@@ -78,7 +78,7 @@ class PetsTable extends Component {
                   )}
 
                   <Button
-                    onClick={() => this.EditPet(pet.id)}
+                    onClick={() => this.editPet(pet.id)}
                     //   className='btn btn-sm btn-danger'
                     color='secondary'
                   >
@@ -86,7 +86,6 @@ class PetsTable extends Component {
                   </Button>
 
                   <Button
-                    color='warning'
                     onClick={() => this.delete(pet.id)}
                     //   className='btn btn-sm btn-danger'
                     color='danger'
@@ -265,6 +264,19 @@ class PetsTable extends Component {
       this.setState({
         errors: [],
         successMessage: `Successfully removed pet`
+      });
+    } catch (err) {
+      this.setState({ errors: { error: [err.message] }, successMessage: null });
+    }
+  };
+
+  editPet = async (id) => {
+    try {
+      await axios.put(`api/pets/${id}`);
+      this.fetchData();
+      this.setState({
+        errors: [],
+        successMessage: `Successfully updated pet`
       });
     } catch (err) {
       this.setState({ errors: { error: [err.message] }, successMessage: null });
