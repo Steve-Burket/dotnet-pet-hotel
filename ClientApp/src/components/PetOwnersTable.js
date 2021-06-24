@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Table, Button, InputGroup, Form } from 'reactstrap';
 
 class PetOwnersTable extends Component {
     state = {
@@ -52,7 +53,7 @@ class PetOwnersTable extends Component {
     renderTable = () => {
         return (
             <div class="table-responsive">
-                <table className='table table-striped table-bordered table-hover' aria-labelledby="tabelLabel">
+                <Table dark className='table table-striped table-bordered table-hover' aria-labelledby="tabelLabel">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -70,11 +71,11 @@ class PetOwnersTable extends Component {
                                 <td>{petOwner.name}</td>
                                 <td>{petOwner.emailAddress}</td>
                                 <td>{petOwner.petCount}</td>
-                                <td><button onClick={() => this.deletePetOwner(petOwner.id)} className='btn btn-sm btn-danger'>Delete</button></td>
+                                <td><Button color="warning" onClick={() => this.deletePetOwner(petOwner.id)} className='btn btn-sm btn-danger'>Delete</Button></td>
                             </tr>
                         )}
                     </tbody>
-                </table>
+                </Table>
             </div>
         );
     }
@@ -90,18 +91,22 @@ class PetOwnersTable extends Component {
                 {this.renderMessages()}
                 <div className="form-group row ml-0">
                     <input
+                  
                         placeholder='Pet Owner Name'
                         value={this.state.newPetOwner.name}
                         onChange={(event) => this.setState({ newPetOwner: { ...this.state.newPetOwner, name: event.target.value } })}
                         className={'form-control col-md-3 mr-2'}
-                    />
+                   
+                 />
                     <input
+                    
                         placeholder='Email Address'
                         value={this.state.newPetOwner.emailAddress}
                         onChange={(event) => this.setState({ newPetOwner: { ...this.state.newPetOwner, emailAddress: event.target.value } })}
                         className={'form-control col-md-3 mr-2'}
-                    />
-                    <button onClick={this.submitPetOwner} className={'btn btn-primary col-md-2'}>Add Pet Owner</button>
+                
+                 />
+                    <Button color="info" onClick={this.submitPetOwner} className={'btn btn-info col-md-2'}>Add Pet Owner</Button>
                 </div>
                 {contents}
             </>

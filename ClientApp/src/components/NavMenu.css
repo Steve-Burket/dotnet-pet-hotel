@@ -16,3 +16,12 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+nav {
+  background-color: rgb(115, 187, 211);
+  font-family: 'Artifika';
+}
+
+.text-dark:hover {
+  background-color: rgb(145, 227, 255);
+}

@@ -1,0 +1,7 @@
+.home-greeting {
+  text-align: center;
+  border: 5px ridge goldenrod;
+  border-radius: 10px;
+  font-family: 'Artifika';
+  font-size: 22px;
+}
