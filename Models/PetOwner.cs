@@ -19,15 +19,23 @@ namespace pet_hotel
 
         // pet count 
         [NotMapped]
-        public int petCount { get; set; }
+        public int petCount
+        {
+            get
+            {
+                // if pets is not populated, assume 0
+                if (this.pets == null) return 0;
+                return this.pets.Count;
+            }
+        }
+
+        // TODO: Add a lookup for all pets that this PetOwner made (lookup in the Pet table)
+        // EF knows that Pet has a foreign key to this table! So this "just works" as long
+        // as we remember to use .Include in the query to populate it automatically
+        [JsonIgnore] // dont include this field in the JSON API because it may cause infinite loop
+        public List<Pet> pets { get; set; }
+
+    
     }
 }
 
-// public int breadCount
-// {
-//     get
-//     {
-//         // if breads is not populated, assume 0
-//         if (this.breads == null) return 0;
-//         return this.breads.Count;
-//     }

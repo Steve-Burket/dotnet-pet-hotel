@@ -47,5 +47,20 @@ namespace pet_hotel
         public PetOwner petOwner {get; set;}
 
 
+
+        // checkin pet
+        public void checkin()
+        {
+            this.checkedInAt = DateTime.UtcNow;
+        }
+        // checkout pet
+        public void checkout()
+        {
+           this.checkedInAt = null;
+
+        }
     }
 }
+
+
+// DateTime.UtcNow.ToString("o");

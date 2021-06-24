@@ -122,43 +122,91 @@ class PetsTable extends Component {
          : this.renderTable();
 
       return (
-         <>
-            <h2 id="tableLabel" >Pets</h2>
-            {this.renderMessages()}
-            <div className="form-group row ml-0 mr-0">
-               <input
-                  placeholder={'pet name'}
-                  className={"form-control col-md-2 mr-2"}
-                  value={this.state.newPet.name}
-                  onChange={(e) => this.setState({ newPet: { ...this.state.newPet, name: e.target.value } })}
-               />
-               <select className={"form-control col-md-2 mr-2"} value={this.state.newPet.breed} onChange={(e) => this.setState({ newPet: { ...this.state.newPet, breed: e.target.value } })}>
-                  <option value='' disabled selected>Pet Breed</option>
-                  <option value='Shepherd'>Shepherd</option>
-                  <option value='Poodle'>Poodle</option>
-                  <option value='Beagle'>Beagle</option>
-                  <option value='Bulldog'>Bulldog</option>
-                  <option value='Terrier'>Terrier</option>
-                  <option value='Boxer'>Boxer</option>
-                  <option value='Labrador'>Labrador</option>
-                  <option value='Retriever'>Retriever</option>
-               </select>
-               <select className={"form-control col-md-2 mr-2"} value={this.state.newPet.color} onChange={(e) => this.setState({ newPet: { ...this.state.newPet, color: e.target.value } })}>
-                  <option value='' disabled selected>Pet Color</option>
-                  <option value='Black'>Black</option>
-                  <option value='White'>White</option>
-                  <option value='Golden'>Golden</option>
-                  <option value='Tricolor'>Tricolor</option>
-                  <option value='Spotted'>Spotted</option>
-               </select>
-               <select className={"form-control col-md-2 mr-2"} value={this.state.newPet.petOwnerid} onChange={(e) => this.setState({ newPet: { ...this.state.newPet, petOwnerid: Number(e.target.value) } })}>
-                  <option>Pet Owner</option>
-                  {this.props.petOwners.map(petOwner => <option value={petOwner.id} key={`select-petOwner=${petOwner.id}`}>{petOwner.name}</option>)}
-               </select>
-               <button className={"form-control btn btn-primary col-md-2"} onClick={this.addPet}>Add Pet</button>
-            </div>
-            {contents}
-         </>
+        <>
+          <h2 id='tableLabel'>Pets</h2>
+          {this.renderMessages()}
+          <div className='form-group row ml-0 mr-0'>
+            <input
+              placeholder={'pet name'}
+              className={'form-control col-md-2 mr-2'}
+              value={this.state.newPet.name}
+              onChange={(e) =>
+                this.setState({
+                  newPet: { ...this.state.newPet, name: e.target.value }
+                })
+              }
+            />
+            <select
+              className={'form-control col-md-2 mr-2'}
+              value={this.state.newPet.breed}
+              onChange={(e) =>
+                this.setState({
+                  newPet: { ...this.state.newPet, breed: e.target.value }
+                })
+              }
+            >
+              <option value='' disabled selected>
+                Pet Breed
+              </option>
+              <option value='Basset'>Basset</option>
+              <option value='Shepherd'>Shepherd</option>
+              <option value='Poodle'>Poodle</option>
+              <option value='Beagle'>Beagle</option>
+              <option value='Bulldog'>Bulldog</option>
+              <option value='Terrier'>Terrier</option>
+              <option value='Boxer'>Boxer</option>
+              <option value='Labrador'>Labrador</option>
+              <option value='Retriever'>Retriever</option>
+            </select>
+            <select
+              className={'form-control col-md-2 mr-2'}
+              value={this.state.newPet.color}
+              onChange={(e) =>
+                this.setState({
+                  newPet: { ...this.state.newPet, color: e.target.value }
+                })
+              }
+            >
+              <option value='' disabled selected>
+                Pet Color
+              </option>
+              <option value='Black'>Black</option>
+              <option value='White'>White</option>
+              <option value='Golden'>Golden</option>
+              <option value='Tricolor'>Tricolor</option>
+              <option value='Spotted'>Spotted</option>
+            </select>
+            <select
+              className={'form-control col-md-2 mr-2'}
+              value={this.state.newPet.petOwnerid}
+              onChange={(e) =>
+                this.setState({
+                  newPet: {
+                    ...this.state.newPet,
+                    petOwnerid: Number(e.target.value)
+                  }
+                })
+              }
+            >
+              <option>Pet Owner</option>
+              {this.props.petOwners.map((petOwner) => (
+                <option
+                  value={petOwner.id}
+                  key={`select-petOwner=${petOwner.id}`}
+                >
+                  {petOwner.name}
+                </option>
+              ))}
+            </select>
+            <button
+              className={'form-control btn btn-primary col-md-2'}
+              onClick={this.addPet}
+            >
+              Add Pet
+            </button>
+          </div>
+          {contents}
+        </>
       );
    }
 
