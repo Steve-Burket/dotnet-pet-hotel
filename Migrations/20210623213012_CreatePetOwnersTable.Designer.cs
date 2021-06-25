@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using pet_hotel.Models;
@@ -9,9 +10,10 @@ using pet_hotel.Models;
 namespace dotnet_bakery.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210623213012_CreatePetOwnersTable")]
+    partial class CreatePetOwnersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,39 +71,15 @@ namespace dotnet_bakery.Migrations
                     b.ToTable("PetOwners");
                 });
 
-            modelBuilder.Entity("pet_hotel.Transaction", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("transaction")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Transactions");
-                });
-
             modelBuilder.Entity("pet_hotel.Pet", b =>
                 {
                     b.HasOne("pet_hotel.PetOwner", "petOwner")
-                        .WithMany("pets")
+                        .WithMany()
                         .HasForeignKey("petOwnerid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("petOwner");
-                });
-
-            modelBuilder.Entity("pet_hotel.PetOwner", b =>
-                {
-                    b.Navigation("pets");
                 });
 #pragma warning restore 612, 618
         }

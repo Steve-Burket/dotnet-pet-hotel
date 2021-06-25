@@ -54,6 +54,10 @@ namespace pet_hotel.Controllers
             if (owner == null) {
                 return NotFound(); // returns 404 not found error
             }
+            Transaction t = new Transaction();
+            t.description = $"{owner.name} was deleted";
+            t.transaction = DateTime.UtcNow;
+            _context.Add(t);
             _context.PetOwners.Remove(owner);
             _context.SaveChanges();
             return NoContent(); // returns 204 No Content
@@ -62,10 +66,16 @@ namespace pet_hotel.Controllers
         // /api/petowners
         [HttpPost]
         public IActionResult CreatePetOwner([FromBody] PetOwner owner) {
+            Transaction t = new Transaction();
+            t.description = $"{owner.name} was created as pet owner";
+            t.transaction = DateTime.UtcNow;
             _context.Add(owner);
+            _context.Add(t);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById), owner, owner);
         }
+
+        
 
         [HttpPut("{id}")]
         public IActionResult UpdateOwner(int id, [FromBody] PetOwner owner) {
@@ -74,6 +84,11 @@ namespace pet_hotel.Controllers
             if (!_context.PetOwners.Any(b => b.id == id)) return NotFound();
 
             // Find the owner and mark it as modified
+            Transaction t = new Transaction();
+            t.description = $"{owner.name} was updated";
+            t.transaction = DateTime.UtcNow;
+            _context.Add(t);
+
             _context.PetOwners.Update(owner);
             _context.SaveChanges();
             return Ok(owner);
