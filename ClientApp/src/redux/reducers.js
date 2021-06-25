@@ -10,7 +10,7 @@ export const petsReducer = (state = [], action) => {
   return state;
 }
 
-export const transactionReducer = (state = [], action) => {
+export const transactionsReducer = (state = [], action) => {
   if (action.type === 'SET_TRANSACTION')
     return action.payload;
   return state;

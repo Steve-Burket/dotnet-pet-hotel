@@ -37,6 +37,8 @@ class PetsTable extends Component {
               <th>Checked In</th>
               <th>Pet Owner</th>
               <th></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -77,14 +79,22 @@ class PetsTable extends Component {
                     </Button>
                   )}
 
-                  <Button
+              
+
+               
+                </td>
+
+                <td>   
+                  
+                   <Button
                     onClick={() => this.editPet(pet.id)}
                     //   className='btn btn-sm btn-danger'
                     color='secondary'
                   >
                     Edit
                   </Button>
-
+                </td>
+                <td> 
                   <Button
                     onClick={() => this.delete(pet.id)}
                     //   className='btn btn-sm btn-danger'

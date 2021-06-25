@@ -61,6 +61,7 @@ class PetOwnersTable extends Component {
                             <th>Email</th>
                             <th>Pets</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,6 +72,7 @@ class PetOwnersTable extends Component {
                                 <td>{petOwner.name}</td>
                                 <td>{petOwner.emailAddress}</td>
                                 <td>{petOwner.petCount}</td>
+                                <td><Button color="secondary" onClick={() => this.editPetOwner(petOwner.id)} className='btn btn-sm btn-secondary'>Edit</Button></td>
                                 <td><Button color="warning" onClick={() => this.deletePetOwner(petOwner.id)} className='btn btn-sm btn-danger'>Delete</Button></td>
                             </tr>
                         )}
@@ -111,6 +113,15 @@ class PetOwnersTable extends Component {
                 {contents}
             </>
         );
+    }
+
+        editPetOwner = async (id) => {
+        await axios.put(`api/petOwners/${id}`)
+        this.props.fetchPetOwners();
+        this.setState({
+            errors: [],
+            successMessage: 'Updated petOwner successfully'
+        })
     }
 
     deletePetOwner = async (id) => {

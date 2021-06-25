@@ -4,6 +4,7 @@ import PetOwnersTable from './PetOwnersTable';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Jumbotron, Container} from 'reactstrap';
+import TransactionsTable from './TransactionsTable';
 import './Home.css';
 
 
@@ -34,6 +35,8 @@ class Home extends Component {
         <PetsTable fetchPetOwners={this.fetchPetOwners} />
         <br />
         <PetOwnersTable fetchPetOwners={this.fetchPetOwners} />
+        <br/>
+        <TransactionsTable />
       </>
     );
   }
