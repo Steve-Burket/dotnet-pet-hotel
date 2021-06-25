@@ -9,7 +9,7 @@ namespace pet_hotel.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class Transaction : ControllerBase
+    public class TransactionController : ControllerBase
     {
         private readonly ApplicationContext _context;
         public TransactionController(ApplicationContext context)
@@ -22,20 +22,13 @@ namespace pet_hotel.Controllers
         [HttpGet] // GET /api/transaction/
         public IEnumerable<Transaction> GetTransactions()
         {
-            return _context.Transactions;
-
+            return _context.Transactions
+           .OrderBy(t => t.transaction);
         }
 
 
-        // /api/transactions
-        [HttpPost]
-        public IActionResult CreateTransaction(Transaction transaction) {
-            Transaction transactionEvent = new Transaction
-            _context.Add(transactionEvent);
-            _context.SaveChanges();
-            return _context.Transactions;
-        }
 
 
     }
 }
+

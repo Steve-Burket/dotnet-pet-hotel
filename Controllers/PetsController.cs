@@ -71,6 +71,10 @@ namespace pet_hotel.Controllers
         public IActionResult CreatePet([FromBody] Pet pet)
         {
             PetOwner owner = _context.PetOwners.SingleOrDefault(o => o.id == pet.petOwnerid);
+            Transaction t = new Transaction();
+            t.description = $"{pet.name} was created as a pet for {owner.name}";
+            t.transaction = DateTime.UtcNow;
+            _context.Add(t);
             _context.Add(pet);
             _context.SaveChanges();
             // return Created("", pet); // this works but isnt great
@@ -84,6 +88,10 @@ namespace pet_hotel.Controllers
             if (pet == null) {
                 return NotFound(); // returns 404 not found error
             }
+            Transaction t = new Transaction();
+            t.description = $"{pet.name} was deleted";
+            t.transaction = DateTime.UtcNow;
+            _context.Add(t);
             _context.Remove(pet);
             _context.SaveChanges();
             return NoContent(); // returns 204 No Content
@@ -99,6 +107,10 @@ namespace pet_hotel.Controllers
 
             pet.checkin();
             // pet++; // this would work too because inventory is public
+            Transaction t = new Transaction();
+            t.description = $"{pet.name} was checked in";
+            t.transaction = DateTime.UtcNow;
+            _context.Add(t);
             _context.Update(pet);
             _context.SaveChanges();
             return Ok(pet);
@@ -113,6 +125,11 @@ namespace pet_hotel.Controllers
 
             pet.checkout();
             // pet.inventory++; // this would work too because inventory is public
+            Transaction t = new Transaction();
+            t.description = $"{pet.name} was checked out";
+            t.transaction = DateTime.UtcNow;
+            _context.Add(t);
+
             _context.Update(pet);
             _context.SaveChanges();
             return Ok(pet);
@@ -124,6 +141,11 @@ namespace pet_hotel.Controllers
             if (pet == null) {
                 return NotFound(); // returns 404 not found error
             }
+            Transaction t = new Transaction();
+            t.description = $"{pet.name} was updated";
+            t.transaction = DateTime.UtcNow;
+            _context.Add(t);
+
             _context.Update(pet);
             _context.SaveChanges();
             return Ok(pet); // returns 200 OK w/ the pet
